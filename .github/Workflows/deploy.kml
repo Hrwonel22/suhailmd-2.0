@@ -1,0 +1,145 @@
+const fs = require('fs-extra')
+if (fs.existsSync('.env')) require('dotenv').config({ path: __dirname+'/.env' })
+
+
+//═══════[Required Variables]════════\\
+global.audio= "" ;  
+global.video= "" ;
+global.port =process.env.PORT 
+global.appUrl=process.env.APP_URL || ""     // put your deploy app/bot url here, for 24/7 for (render , koyeb, glitch)
+global.email ="saimsamsun789@gmail.com"
+global.location="Nigeria,Osun,Oshogbo."
+
+
+global.mongodb= process.env.MONGODB_URI || ""
+global.allowJids= process.env.ALLOW_JID || "null" 
+global.blockJids= process.env.BLOCK_JID || "null"
+global.DATABASE_URL = process.env.DATABASE_URL || ""
+
+global.timezone= process.env.TZ || process.env.TIME_ZONE || "Nigeria/Osun,Oshogbo";
+global.github=process.env.GITHUB|| "https://github.com/SuhailTechInfo/Suhail-Md";
+global.gurl  =process.env.GURL  || "https://whatsapp.com/channel/0029Vah3XPC6rsQtIcfTX342";
+global.website=process.env.GURL || "https://whatsapp.com/channel/0029Vah3XPC6rsQtIcfTX342" ; 
+global.THUMB_IMAGE = process.env.THUMB_IMAGE || process.env.IMAGE || "https://telegra.ph/file/75fab4da4ca60e4a651d0.jpg" || "https://github.com/SuhailTechInfo/Suhail-Md/blob/main/lib/assets/suhail.jpg?raw=true" ; // SET LOGO FOR IMAGE 
+global.caption = process.env.CAPTION || global.caption || "Empire_Md" 
+
+
+global.devs = "2348078582627" // Developer Contact
+global.sudo = process.env.SUDO ? process.env.SUDO.replace(/[\s+]/g, '') : "null";
+global.owner= process.env.OWNER_NUMBER ? process.env.OWNER_NUMBER.replace(/[\s+]/g, '') : "2348078582627";
+
+
+
+
+//========================= [ BOT SETTINGS ] ======8===================\\
+global.style = process.env.STYLE   || Math.floor(Math.random()*6) || '0'  // put '1' to "5" here to check bot styles
+global.flush = process.env.FLUSH   || "false"; // Make it "true" if bot not responed
+global.gdbye = process.env.GOODBYE || process.env.CAN_GOODBYE || "false"; 
+global.wlcm  = process.env.WELCOME || process.env.CAN_WELCOME || Math.floor(Math.random()*3)  === 1 ?  "false" : "false" ;  // Make it "false" for disable WELCOME 
+
+global.warncount = process.env.WARN_COUNT || 3
+global.disablepm = process.env.DISABLE_PM || "false"
+global.disablegroup = process.env.DISABLE_GROUPS || "false", // disable bot in groups when public mode
+
+global.MsgsInLog = process.env.MSGS_IN_LOG|| "false" // "true"  to see messages , "log" to show logs , "false" to hide logs messages
+global.userImages= process.env.USER_IMAGES || "https://telegra.ph/file/75fab4da4ca60e4a651d0.jpg" // "text" // set Image/video urls here
+global.waPresence= process.env.WAPRESENCE ||  "null" ; // 'unavailable' | 'available' | 'composing' | 'recording' | 'paused'
+
+
+//========================= [ AUTO READ MSGS & CMDS ] =========================\\
+global.readcmds = process.env.READ_COMMAND || "false"
+global.readmessage = process.env.READ_MESSAGE || "false"
+global.readmessagefrom = process.env.READ_MESSAGE_FROM || "null,234xxxxxxxx";
+
+
+//========================= [ AUTO SAVE & READ STATUS ] =========================\\
+global.read_status = process.env.AUTO_READ_STATUS || "false"
+global.save_status = process.env.AUTO_SAVE_STATUS || "false"
+global.save_status_from =  process.env.SAVE_STATUS_FROM  || "null,234xxxxxxxx";
+global.read_status_from =  process.env.READ_STATUS_FROM  ||  "null";
+
+global.api_smd = "https://api-smd.onrender.com" //  || "https://api-smd-1.vercel.app" // expires
+global.scan = "https://suhail-md-vtsf.onrender.com";
+
+
+global.SESSION_ID = process.env.SESSION_ID  || "SUHAIL_11_31_09_30_ewogICJjcmVkcy5qc29uIjogIntcbiAgXCJub2lzZUtleVwiOiB7XG4gICAgXCJwcml2YXRlXCI6IHtcbiAgICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgMjQsXG4gICAgICAgIDMsXG4gICAgICAgIDE3OSxcbiAgICAgICAgMjE0LFxuICAgICAgICA2OCxcbiAgICAgICAgMTUzLFxuICAgICAgICAxODMsXG4gICAgICAgIDc5LFxuICAgICAgICAxNDgsXG4gICAgICAgIDIyLFxuICAgICAgICAxOTcsXG4gICAgICAgIDIwOSxcbiAgICAgICAgMTIsXG4gICAgICAgIDIxMixcbiAgICAgICAgOCxcbiAgICAgICAgNDksXG4gICAgICAgIDE0MCxcbiAgICAgICAgMTYwLFxuICAgICAgICAxOTMsXG4gICAgICAgIDEyMCxcbiAgICAgICAgMjUsXG4gICAgICAgIDEzNCxcbiAgICAgICAgMjQ0LFxuICAgICAgICAxODUsXG4gICAgICAgIDE3NCxcbiAgICAgICAgMTc2LFxuICAgICAgICAxMjUsXG4gICAgICAgIDE4NCxcbiAgICAgICAgMjA3LFxuICAgICAgICAyMTksXG4gICAgICAgIDcyLFxuICAgICAgICAxMDRcbiAgICAgIF1cbiAgICB9LFxuICAgIFwicHVibGljXCI6IHtcbiAgICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgMjMyLFxuICAgICAgICAxNCxcbiAgICAgICAgMjU0LFxuICAgICAgICAyNSxcbiAgICAgICAgODEsXG4gICAgICAgIDExNyxcbiAgICAgICAgMjQ0LFxuICAgICAgICA0OCxcbiAgICAgICAgNTksXG4gICAgICAgIDIzOCxcbiAgICAgICAgMjIyLFxuICAgICAgICAxNTYsXG4gICAgICAgIDE4NSxcbiAgICAgICAgMTQ1LFxuICAgICAgICAxNCxcbiAgICAgICAgNTgsXG4gICAgICAgIDE5LFxuICAgICAgICAxMjksXG4gICAgICAgIDYsXG4gICAgICAgIDUyLFxuICAgICAgICAxNjUsXG4gICAgICAgIDI0MCxcbiAgICAgICAgMTE1LFxuICAgICAgICAxMCxcbiAgICAgICAgMTcyLFxuICAgICAgICA3MSxcbiAgICAgICAgMTY5LFxuICAgICAgICAxNTcsXG4gICAgICAgIDE4LFxuICAgICAgICA2MSxcbiAgICAgICAgMTY2LFxuICAgICAgICA0XG4gICAgICBdXG4gICAgfVxuICB9LFxuICBcInBhaXJpbmdFcGhlbWVyYWxLZXlQYWlyXCI6IHtcbiAgICBcInByaXZhdGVcIjoge1xuICAgICAgXCJ0eXBlXCI6IFwiQnVmZmVyXCIsXG4gICAgICBcImRhdGFcIjogW1xuICAgICAgICAxNixcbiAgICAgICAgMjM1LFxuICAgICAgICAxMTUsXG4gICAgICAgIDExLFxuICAgICAgICAyNTQsXG4gICAgICAgIDUyLFxuICAgICAgICA2NyxcbiAgICAgICAgOTIsXG4gICAgICAgIDI5LFxuICAgICAgICAyNCxcbiAgICAgICAgOTMsXG4gICAgICAgIDEwNCxcbiAgICAgICAgMjE3LFxuICAgICAgICA4MCxcbiAgICAgICAgMTY5LFxuICAgICAgICAyMzksXG4gICAgICAgIDE1NyxcbiAgICAgICAgMjQ2LFxuICAgICAgICAxNDAsXG4gICAgICAgIDUwLFxuICAgICAgICAxNzMsXG4gICAgICAgIDIyNCxcbiAgICAgICAgMjMsXG4gICAgICAgIDE1MyxcbiAgICAgICAgODksXG4gICAgICAgIDE5NSxcbiAgICAgICAgMTQ4LFxuICAgICAgICAxMTEsXG4gICAgICAgIDExMCxcbiAgICAgICAgNzYsXG4gICAgICAgIDYyLFxuICAgICAgICAxMTdcbiAgICAgIF1cbiAgICB9LFxuICAgIFwicHVibGljXCI6IHtcbiAgICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgMjQsXG4gICAgICAgIDU1LFxuICAgICAgICAxOTMsXG4gICAgICAgIDEzOCxcbiAgICAgICAgNCxcbiAgICAgICAgMzMsXG4gICAgICAgIDg3LFxuICAgICAgICAyNDEsXG4gICAgICAgIDIyMCxcbiAgICAgICAgMjExLFxuICAgICAgICAxMDgsXG4gICAgICAgIDE5MyxcbiAgICAgICAgNzAsXG4gICAgICAgIDE4MyxcbiAgICAgICAgNTYsXG4gICAgICAgIDE3LFxuICAgICAgICAzOSxcbiAgICAgICAgMjE1LFxuICAgICAgICA4NyxcbiAgICAgICAgMTE1LFxuICAgICAgICAyOCxcbiAgICAgICAgMTUxLFxuICAgICAgICAxMTEsXG4gICAgICAgIDIsXG4gICAgICAgIDE2MyxcbiAgICAgICAgMTEyLFxuICAgICAgICAyMyxcbiAgICAgICAgOTQsXG4gICAgICAgIDI5LFxuICAgICAgICAyNDIsXG4gICAgICAgIDIwMixcbiAgICAgICAgMjZcbiAgICAgIF1cbiAgICB9XG4gIH0sXG4gIFwic2lnbmVkSWRlbnRpdHlLZXlcIjoge1xuICAgIFwicHJpdmF0ZVwiOiB7XG4gICAgICBcInR5cGVcIjogXCJCdWZmZXJcIixcbiAgICAgIFwiZGF0YVwiOiBbXG4gICAgICAgIDExMixcbiAgICAgICAgMTQ3LFxuICAgICAgICAyMTUsXG4gICAgICAgIDM2LFxuICAgICAgICAxNDIsXG4gICAgICAgIDczLFxuICAgICAgICAxLFxuICAgICAgICAxMjAsXG4gICAgICAgIDQzLFxuICAgICAgICAxODIsXG4gICAgICAgIDE2NyxcbiAgICAgICAgMTIxLFxuICAgICAgICA2LFxuICAgICAgICA3MCxcbiAgICAgICAgOTYsXG4gICAgICAgIDE4MSxcbiAgICAgICAgMCxcbiAgICAgICAgMyxcbiAgICAgICAgMTAwLFxuICAgICAgICAyNixcbiAgICAgICAgMjM0LFxuICAgICAgICAyMDgsXG4gICAgICAgIDE4MSxcbiAgICAgICAgMTQ4LFxuICAgICAgICAxODUsXG4gICAgICAgIDE4NyxcbiAgICAgICAgNjksXG4gICAgICAgIDExMixcbiAgICAgICAgMjQyLFxuICAgICAgICAxNTMsXG4gICAgICAgIDI0OSxcbiAgICAgICAgODhcbiAgICAgIF1cbiAgICB9LFxuICAgIFwicHVibGljXCI6IHtcbiAgICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgMjI4LFxuICAgICAgICAxNzEsXG4gICAgICAgIDEyMCxcbiAgICAgICAgMTUsXG4gICAgICAgIDU3LFxuICAgICAgICAxODAsXG4gICAgICAgIDM2LFxuICAgICAgICAxNjcsXG4gICAgICAgIDI0NyxcbiAgICAgICAgMTc1LFxuICAgICAgICAyNCxcbiAgICAgICAgMTc2LFxuICAgICAgICAxODUsXG4gICAgICAgIDMyLFxuICAgICAgICA1MixcbiAgICAgICAgODcsXG4gICAgICAgIDYzLFxuICAgICAgICAyNDEsXG4gICAgICAgIDIyNSxcbiAgICAgICAgNDIsXG4gICAgICAgIDE1MSxcbiAgICAgICAgMzUsXG4gICAgICAgIDIzOCxcbiAgICAgICAgMjUyLFxuICAgICAgICA3NCxcbiAgICAgICAgNjEsXG4gICAgICAgIDEwMixcbiAgICAgICAgMTI2LFxuICAgICAgICAxODAsXG4gICAgICAgIDE4NCxcbiAgICAgICAgODEsXG4gICAgICAgIDEwM1xuICAgICAgXVxuICAgIH1cbiAgfSxcbiAgXCJzaWduZWRQcmVLZXlcIjoge1xuICAgIFwia2V5UGFpclwiOiB7XG4gICAgICBcInByaXZhdGVcIjoge1xuICAgICAgICBcInR5cGVcIjogXCJCdWZmZXJcIixcbiAgICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgICAyNDAsXG4gICAgICAgICAgNDUsXG4gICAgICAgICAgMTEwLFxuICAgICAgICAgIDY3LFxuICAgICAgICAgIDE2NyxcbiAgICAgICAgICA3NixcbiAgICAgICAgICAxODksXG4gICAgICAgICAgMjU0LFxuICAgICAgICAgIDgxLFxuICAgICAgICAgIDIzMyxcbiAgICAgICAgICAyOSxcbiAgICAgICAgICA0NCxcbiAgICAgICAgICA5MCxcbiAgICAgICAgICA5NSxcbiAgICAgICAgICAxMzAsXG4gICAgICAgICAgMTk2LFxuICAgICAgICAgIDE3NyxcbiAgICAgICAgICAyMTMsXG4gICAgICAgICAgMTczLFxuICAgICAgICAgIDQ4LFxuICAgICAgICAgIDEzNCxcbiAgICAgICAgICAxODYsXG4gICAgICAgICAgMjUxLFxuICAgICAgICAgIDEyLFxuICAgICAgICAgIDI0NyxcbiAgICAgICAgICA5OCxcbiAgICAgICAgICA5MixcbiAgICAgICAgICA1NixcbiAgICAgICAgICAxOTAsXG4gICAgICAgICAgMTA1LFxuICAgICAgICAgIDIxMixcbiAgICAgICAgICA4MFxuICAgICAgICBdXG4gICAgICB9LFxuICAgICAgXCJwdWJsaWNcIjoge1xuICAgICAgICBcInR5cGVcIjogXCJCdWZmZXJcIixcbiAgICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgICA1OSxcbiAgICAgICAgICAxMzgsXG4gICAgICAgICAgMTU0LFxuICAgICAgICAgIDM4LFxuICAgICAgICAgIDgsXG4gICAgICAgICAgMTg4LFxuICAgICAgICAgIDkzLFxuICAgICAgICAgIDEzMSxcbiAgICAgICAgICA3MixcbiAgICAgICAgICAyMjksXG4gICAgICAgICAgMTg0LFxuICAgICAgICAgIDIxMSxcbiAgICAgICAgICAzNyxcbiAgICAgICAgICAxNDIsXG4gICAgICAgICAgMjQ2LFxuICAgICAgICAgIDcsXG4gICAgICAgICAgMTEyLFxuICAgICAgICAgIDIyOSxcbiAgICAgICAgICAxMTcsXG4gICAgICAgICAgMjM4LFxuICAgICAgICAgIDExOCxcbiAgICAgICAgICAxMDYsXG4gICAgICAgICAgMTE2LFxuICAgICAgICAgIDM5LFxuICAgICAgICAgIDIyNCxcbiAgICAgICAgICAxNTEsXG4gICAgICAgICAgMTU5LFxuICAgICAgICAgIDE2NixcbiAgICAgICAgICAxMzYsXG4gICAgICAgICAgMTE3LFxuICAgICAgICAgIDEwLFxuICAgICAgICAgIDgwXG4gICAgICAgIF1cbiAgICAgIH1cbiAgICB9LFxuICAgIFwic2lnbmF0dXJlXCI6IHtcbiAgICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgNjEsXG4gICAgICAgIDQ1LFxuICAgICAgICAyMjEsXG4gICAgICAgIDk4LFxuICAgICAgICAyMzIsXG4gICAgICAgIDIzMSxcbiAgICAgICAgMTcyLFxuICAgICAgICA3MyxcbiAgICAgICAgMjEzLFxuICAgICAgICA2LFxuICAgICAgICAxMzEsXG4gICAgICAgIDE1MCxcbiAgICAgICAgMTcxLFxuICAgICAgICA2OCxcbiAgICAgICAgMTUxLFxuICAgICAgICAyNTQsXG4gICAgICAgIDE4OCxcbiAgICAgICAgMTczLFxuICAgICAgICA4NCxcbiAgICAgICAgMjQyLFxuICAgICAgICA5MixcbiAgICAgICAgOTQsXG4gICAgICAgIDE5MSxcbiAgICAgICAgMTY1LFxuICAgICAgICAyMDQsXG4gICAgICAgIDE3NCxcbiAgICAgICAgNTUsXG4gICAgICAgIDEwNSxcbiAgICAgICAgMjA0LFxuICAgICAgICAyMDIsXG4gICAgICAgIDQ4LFxuICAgICAgICA5NCxcbiAgICAgICAgMTEsXG4gICAgICAgIDExNCxcbiAgICAgICAgMTY4LFxuICAgICAgICAyMDAsXG4gICAgICAgIDEyNSxcbiAgICAgICAgMjgsXG4gICAgICAgIDEzLFxuICAgICAgICAxNzUsXG4gICAgICAgIDIzMyxcbiAgICAgICAgMTU4LFxuICAgICAgICAxODMsXG4gICAgICAgIDE4NixcbiAgICAgICAgODksXG4gICAgICAgIDkwLFxuICAgICAgICAxMzMsXG4gICAgICAgIDEwMyxcbiAgICAgICAgMTA0LFxuICAgICAgICAyMDcsXG4gICAgICAgIDIxOSxcbiAgICAgICAgNDUsXG4gICAgICAgIDUsXG4gICAgICAgIDQ2LFxuICAgICAgICAxNzcsXG4gICAgICAgIDI5LFxuICAgICAgICA1NCxcbiAgICAgICAgMzUsXG4gICAgICAgIDI1NSxcbiAgICAgICAgMzksXG4gICAgICAgIDE0MixcbiAgICAgICAgMTU4LFxuICAgICAgICAyNDQsXG4gICAgICAgIDEzOFxuICAgICAgXVxuICAgIH0sXG4gICAgXCJrZXlJZFwiOiAxXG4gIH0sXG4gIFwicmVnaXN0cmF0aW9uSWRcIjogMzUsXG4gIFwiYWR2U2VjcmV0S2V5XCI6IFwiUkVRdW5PTjd5Wndxby93U29hQmxoUjBpQnU0RE9WS1BWVXQ3UHl1V3hVcz1cIixcbiAgXCJwcm9jZXNzZWRIaXN0b3J5TWVzc2FnZXNcIjogW10sXG4gIFwibmV4dFByZUtleUlkXCI6IDMxLFxuICBcImZpcnN0VW51cGxvYWRlZFByZUtleUlkXCI6IDMxLFxuICBcImFjY291bnRTeW5jQ291bnRlclwiOiAwLFxuICBcImFjY291bnRTZXR0aW5nc1wiOiB7XG4gICAgXCJ1bmFyY2hpdmVDaGF0c1wiOiBmYWxzZVxuICB9LFxuICBcImRldmljZUlkXCI6IFwiRUJJaXYxUThTUmlEcXJISzdKZElId1wiLFxuICBcInBob25lSWRcIjogXCJkODExMTZjZi03NWI3LTRhMGUtYWMyZi01NmMwNzA4YzMzN2FcIixcbiAgXCJpZGVudGl0eUlkXCI6IHtcbiAgICBcInR5cGVcIjogXCJCdWZmZXJcIixcbiAgICBcImRhdGFcIjogW1xuICAgICAgMjksXG4gICAgICAyMTIsXG4gICAgICAxNDMsXG4gICAgICAyMjYsXG4gICAgICAxMTcsXG4gICAgICAyMjksXG4gICAgICAxMjksXG4gICAgICAxODAsXG4gICAgICAxNTEsXG4gICAgICAyMDUsXG4gICAgICAyNDUsXG4gICAgICA2MixcbiAgICAgIDExOCxcbiAgICAgIDgxLFxuICAgICAgMTIyLFxuICAgICAgMjQ0LFxuICAgICAgNTEsXG4gICAgICA1LFxuICAgICAgNTMsXG4gICAgICA0NVxuICAgIF1cbiAgfSxcbiAgXCJyZWdpc3RlcmVkXCI6IHRydWUsXG4gIFwiYmFja3VwVG9rZW5cIjoge1xuICAgIFwidHlwZVwiOiBcIkJ1ZmZlclwiLFxuICAgIFwiZGF0YVwiOiBbXG4gICAgICA0NCxcbiAgICAgIDEwMCxcbiAgICAgIDIxMyxcbiAgICAgIDExMixcbiAgICAgIDE3NyxcbiAgICAgIDE5NixcbiAgICAgIDE3OCxcbiAgICAgIDE0MixcbiAgICAgIDI3LFxuICAgICAgMjMzLFxuICAgICAgMjM5LFxuICAgICAgMTYwLFxuICAgICAgMTY5LFxuICAgICAgMTUsXG4gICAgICA1MSxcbiAgICAgIDM4LFxuICAgICAgMjI2LFxuICAgICAgMTk5LFxuICAgICAgNjQsXG4gICAgICA5MVxuICAgIF1cbiAgfSxcbiAgXCJyZWdpc3RyYXRpb25cIjoge30sXG4gIFwicGFpcmluZ0NvZGVcIjogXCJYOVNGRExUWFwiLFxuICBcIm1lXCI6IHtcbiAgICBcImlkXCI6IFwiMjU2Nzc5Mzg1MjEzOjhAcy53aGF0c2FwcC5uZXRcIixcbiAgICBcImxpZFwiOiBcIjExOTc0NDA1NzMyMzYzMzo4QGxpZFwiXG4gIH0sXG4gIFwiYWNjb3VudFwiOiB7XG4gICAgXCJkZXRhaWxzXCI6IFwiQ1BiRDcrb0VFUENYNnJjR0dBY2dBQ2dBXCIsXG4gICAgXCJhY2NvdW50U2lnbmF0dXJlS2V5XCI6IFwiRkliNWI2a3NuYndSVytubnRiV3lseno4V1RmaW1YOTMvUXg5NEVoUENXST1cIixcbiAgICBcImFjY291bnRTaWduYXR1cmVcIjogXCJBY1htZTF3ekVvMkNMQTFlVnpNY0huSlcrN3AwNkRLMzdNUUJLY2x0QjZ1azdYK0dmeHF4M1NKUmRXcTk1cUc1WHdTd3hNbnArV2tPb2xQS2hoRjFCUT09XCIsXG4gICAgXCJkZXZpY2VTaWduYXR1cmVcIjogXCI3VE1MSnlzWFpsQWpNOUJ3VHNhSm5hejdHVERqOFZ1UDJDWEVZanM4R1ZjL0pjUTlrS1BpVFYvMGlrcTcwZVFsNGJpZzZDSitQUnJReDZvbWxta2loZz09XCJcbiAgfSxcbiAgXCJzaWduYWxJZGVudGl0aWVzXCI6IFtcbiAgICB7XG4gICAgICBcImlkZW50aWZpZXJcIjoge1xuICAgICAgICBcIm5hbWVcIjogXCIyNTY3NzkzODUyMTM6OEBzLndoYXRzYXBwLm5ldFwiLFxuICAgICAgICBcImRldmljZUlkXCI6IDBcbiAgICAgIH0sXG4gICAgICBcImlkZW50aWZpZXJLZXlcIjoge1xuICAgICAgICBcInR5cGVcIjogXCJCdWZmZXJcIixcbiAgICAgICAgXCJkYXRhXCI6IFtcbiAgICAgICAgICA1LFxuICAgICAgICAgIDIwLFxuICAgICAgICAgIDEzNCxcbiAgICAgICAgICAyNDksXG4gICAgICAgICAgMTExLFxuICAgICAgICAgIDE2OSxcbiAgICAgICAgICA0NCxcbiAgICAgICAgICAxNTcsXG4gICAgICAgICAgMTg4LFxuICAgICAgICAgIDE3LFxuICAgICAgICAgIDkxLFxuICAgICAgICAgIDIzMyxcbiAgICAgICAgICAyMzEsXG4gICAgICAgICAgMTgxLFxuICAgICAgICAgIDE4MSxcbiAgICAgICAgICAxNzgsXG4gICAgICAgICAgMTUxLFxuICAgICAgICAgIDYwLFxuICAgICAgICAgIDI1MixcbiAgICAgICAgICA4OSxcbiAgICAgICAgICA1NSxcbiAgICAgICAgICAyMjYsXG4gICAgICAgICAgMTUzLFxuICAgICAgICAgIDEyNyxcbiAgICAgICAgICAxMTksXG4gICAgICAgICAgMjUzLFxuICAgICAgICAgIDEyLFxuICAgICAgICAgIDEyNSxcbiAgICAgICAgICAyMjQsXG4gICAgICAgICAgNzIsXG4gICAgICAgICAgNzksXG4gICAgICAgICAgOSxcbiAgICAgICAgICA5OFxuICAgICAgICBdXG4gICAgICB9XG4gICAgfVxuICBdLFxuICBcInBsYXRmb3JtXCI6IFwiYW5kcm9pZFwiLFxuICBcImxhc3RBY2NvdW50U3luY1RpbWVzdGFtcFwiOiAxNzI3Njk1ODYwLFxuICBcIm15QXBwU3RhdGVLZXlJZFwiOiBcIkFBQUFBQzRtXCJcbn0iLAogICJhcHAtc3RhdGUtc3luYy1rZXktQUFBQUFDNG0uanNvbiI6ICJ7XCJrZXlEYXRhXCI6XCJQSFozUi91T25kR1hBVVNFYXV0Njg0dEtuamdwVWp0RzVKUEpUcHF2QWhBPVwiLFwiZmluZ2VycHJpbnRcIjp7XCJyYXdJZFwiOjEyOTc4NjcyNTQsXCJjdXJyZW50SW5kZXhcIjozLFwiZGV2aWNlSW5kZXhlc1wiOlswLDEsM119LFwidGltZXN0YW1wXCI6XCIwXCJ9Igp9"  // PUT your SESSION_ID 
+
+
+module.exports = {
+
+  menu: process.env.MENU || "", /**  Available @MENU @Schemes 1: Aztec_Md, 2: A17_Md, 3: Suhail-Md Default ---------- If Not Choose then it Randomely Pic One Of Them Each time **/
+
+  HANDLERS: process.env.PREFIX  || ".",
+  BRANCH  : process.env.BRANCH  || "main",
+  VERSION : process.env.VERSION || "1.0.1-developement-x",
+  caption : global.caption || "" , // ```『 ᴘᴏᴡᴇʀᴇᴅ ʙʏ sᴜʜᴀɪʟ²²¹-ᴍᴅ 』```", //*『sᴜʙsᴄʀɪʙᴇ • sᴜʜᴀɪʟ ᴛᴇᴄʜ』*\n youtube.com/@suhailtechinfo0"),
+ 
+  author : process.env.PACK_AUTHER|| "★彡[ᴏɴʟʏ_ᴏɴᴇ_🥇ᴇᴍᴘɪʀᴇ]彡★",
+  packname: process.env.PACK_NAME || "Sticker by",
+  botname : process.env.BOT_NAME  || "Empire_Md",
+  ownername:process.env.OWNER_NAME|| "★彡[ᴏɴʟʏ_ᴏɴᴇ_🥇ᴇᴍᴘɪʀᴇ]彡★",
+
+
+  errorChat : process.env.ERROR_CHAT || "",
+  KOYEB_API : process.env.KOYEB_API  || "false",
+
+  REMOVE_BG_KEY : process.env.REMOVE_BG_KEY  || "",
+  OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
+  HEROKU_API_KEY: process.env.HEROKU_API_KEY || "",
+  HEROKU_APP_NAME:process.env.HEROKU_APP_NAME|| "",
+  antilink_values:process.env.ANTILINK_VALUES|| "all",
+  HEROKU: process.env.HEROKU_APP_NAME && process.env.HEROKU_API_KEY,p
+
+
+  WORKTYPE: process.env.WORKTYPE || process.env.MODE|| "private",
+  LANG: ( process.env.THEME ||  "SUHAIL"  ).toUpperCase(),
+
+
+
+};
+
+
+
+global.ELEVENLAB_API_KEY = process.env.ELEVENLAB_API_KEY || "";
+global.aitts_Voice_Id = process.env.AITTS_ID|| "37";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+global.rank = "updated"
+global.isMongodb = false; 
+let file = require.resolve(__filename)
+fs.watchFile(file, () => { fs.unwatchFile(file);console.log(`Update'${__filename}'`);delete require.cache[file];	require(file); })
+ 
+
+// ========================= [ Disables in V.1.2.8 ] ===============================\\  
+  //style : process.env.STYLE || "2",  // put '1' & "2" here to check bot styles
+  //readmessage:process.env.READ_MESSAGE|| "false",
+  //warncount: process.env.WARN_COUNT || 3,
+  //userImages:process.env.USER_IMAGES|| "text",  // SET IMAGE AND VIDEO URL FOR BOT MENUS 
+  //disablepm: process.env.DISABLE_PM || "false",
+  //MsgsInLog: process.env.MSGS_IN_LOG|| "false", // "true"  to see messages , "log" to open logs , "false" to hide logs messages
+  //readcmds:process.env.READ_COMMANDS|| "false", 
+  //alwaysonline:process.env.WAPRESENCE|| "unavailable", // 'unavailable' | 'online' | 'composing' | 'recording' | 'paused'
+  //read_status: process.env.AUTO_READ_STATUS || "false",
+  //save_status: process.env.AUTO_SAVE_STATUS || "false",
+  //aitts_Voice_Id : process.env.AITTS_ID || "37",
+  //ELEVENLAB_API_KEY: process.env.ELEVENLAB_API_KEY  || "",
+ ,  , , , 
